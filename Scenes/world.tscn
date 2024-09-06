@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/end_of_level.gd" id="5_k3q63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1jih"]
-size = Vector2(63.5, 325)
+size = Vector2(1145.75, 711.5)
 
 [node name="World" type="Node2D"]
 
@@ -140,7 +140,7 @@ position = Vector2(2097, 115)
 script = ExtResource("5_k3q63")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End OfLevel"]
-position = Vector2(2271.75, 161.5)
+position = Vector2(2722.13, 167.25)
 shape = SubResource("RectangleShape2D_n1jih")
 
 [connection signal="area_entered" from="End OfLevel" to="Background" method="_on_end_of_level_area_entered"]
