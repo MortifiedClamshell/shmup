@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkelyofx2ykgv"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_jljda"]
+[ext_resource type="Texture2D" uid="uid://b6cw0lje0wvhx" path="res://Assets/Horror game player animations.png" id="1_ob4mj"]
+[ext_resource type="Texture2D" uid="uid://burylabmjf4ni" path="res://Assets/hub elements.png" id="3_g2ene"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rty2b"]
+radius = 11.0454
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8tcg"]
+atlas = ExtResource("1_ob4mj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw7vr"]
+atlas = ExtResource("1_ob4mj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oqnp"]
+atlas = ExtResource("1_ob4mj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qw2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8tcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw7vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oqnp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2dbf"]
+bg_color = Color(0.719477, 0.456546, 0.945645, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvg0v"]
+bg_color = Color(0.164317, 0.705409, 0.45696, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vf7kl"]
+radius = 9.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_jljda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rty2b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1qw2r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(302, 22)
+texture = ExtResource("3_g2ene")
+region_enabled = true
+region_rect = Rect2(72, 0, 72, 26)
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 287.0
+offset_top = 13.0
+offset_right = 317.0
+offset_bottom = 29.0
+theme_override_styles/background = SubResource("StyleBoxFlat_b2dbf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uvg0v")
+show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vf7kl")
+debug_color = Color(0.902304, 0.000152093, 0.75673, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

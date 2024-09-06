@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c16hajgvaltmk"]
+
+[ext_resource type="Texture2D" uid="uid://d0jqkplharipi" path="res://Assets/title.png" id="1_sbxh5"]
+[ext_resource type="FontFile" uid="uid://f73rjwon5wlb" path="res://Assets/Daydream.ttf" id="2_hl2q6"]
+[ext_resource type="Script" path="res://start.gd" id="3_e84ld"]
+[ext_resource type="Script" path="res://quit.gd" id="4_ip5e0"]
+[ext_resource type="Texture2D" uid="uid://d24xhcs8se25b" path="res://Assets/Skybox Castle outside.png" id="5_ehby8"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 639.0
+offset_bottom = 193.0
+texture = ExtResource("1_sbxh5")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -33.0
+offset_right = 48.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hl2q6")
+text = "START GAME"
+script = ExtResource("3_e84ld")
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_hl2q6")
+text = "Quit Game"
+script = ExtResource("4_ip5e0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 241.0
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("5_ehby8")
+stretch_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="CanvasLayer/VBoxContainer/Start" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="CanvasLayer/VBoxContainer/Start" method="_on_quit_pressed"]
